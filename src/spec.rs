@@ -5,7 +5,10 @@ use num_derive::FromPrimitive;
 /// Magic number used to denote the beginning of a device tree (as a native machine number).
 pub const FDT_MAGIC: u32 = 0xd00d_feed;
 /// Maximum length of a device tree node name (including null byte)
-pub const MAX_NODE_NAME_LEN: usize = 31;
+/// Format of node name string is (node-name@unit-address)
+/// node-name limit is 31 characters, while "@unit-address" depends on address size
+/// For a 64-bit address, "@unit-address" would be up to another 17 characters
+pub const MAX_NODE_NAME_LEN: usize = 48;
 
 /// Definition of the parsed phandle as a native machine number
 pub type Phandle = u32;
